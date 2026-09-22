@@ -1,0 +1,91 @@
+---
+import { workStages } from "../../data/work-process";
+import ProductionLine from "./ProductionLine.astro";
+import StageContent from "./StageContent.astro";
+---
+
+<section
+  class="work-process"
+  data-work-process
+  aria-labelledby="work-process-heading"
+>
+  <div class="pin" data-pin>
+    <div class="layout">
+      <ProductionLine stages={workStages} />
+      <StageContent stages={workStages} />
+    </div>
+  </div>
+</section>
+
+<script>
+  import { mountWorkProcess } from "../../scripts/work-process";
+
+  for (const root of document.querySelectorAll<HTMLElement>(
+    "[data-work-process]",
+  )) {
+    mountWorkProcess(root);
+  }
+</script>
+
+<style>
+  .work-process {
+    --ink: #1a1714;
+    --paper: #f3efe6;
+    --muted: rgb(26 23 20 / 0.64);
+    --hairline: rgb(26 23 20 / 0.24);
+    --rail: rgb(26 23 20 / 0.4);
+    --belt-fill: rgb(26 23 20 / 0.035);
+    --slat: rgb(26 23 20 / 0.14);
+    --product-fill: #f7f4ec;
+    --belt: 112px;
+    --product-size: 88px;
+    --serif:
+      Palatino, "Palatino Linotype", "Iowan Old Style", Georgia,
+      "Times New Roman", serif;
+    --sans:
+      "Avenir Next", "Segoe UI", "Helvetica Neue", "Liberation Sans", sans-serif;
+    --mono:
+      ui-monospace, "Cascadia Mono", "SFMono-Regular", "Liberation Mono",
+      monospace;
+
+    position: relative;
+    height: 420vh;
+    overflow-anchor: none;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+  }
+
+  .pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: stretch;
+    height: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+    column-gap: clamp(1.5rem, 4vw, 4rem);
+    padding: clamp(1.25rem, 3.5vh, 2.75rem) clamp(1.25rem, 4vw, 4rem);
+  }
+
+  @media (max-width: 860px) {
+    .work-process {
+      --belt: 74px;
+      --product-size: 58px;
+    }
+
+    .layout {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: minmax(0, 1.2fr) minmax(0, 0.85fr);
+      row-gap: 0.35rem;
+      padding: 0.9rem 1.1rem 1.15rem;
+    }
+  }
+</style>
