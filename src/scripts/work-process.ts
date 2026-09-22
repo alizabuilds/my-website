@@ -1,6 +1,7 @@
 /**
  * Scroll model for the production line:
- * 1. Approach — the product box travels down the belt to the center of the line.
+ * 1. Approach — the product box travels down to the center while the belt
+ *    moves upward beneath it. Stations stay put until the box arrives.
  * 2. Processing — the box stays centered while the belt and stations move upward.
  *
  * Travel distance is derived from the stations in the DOM, so the stage count
@@ -38,8 +39,9 @@ export function mountWorkProcess(root: HTMLElement): void {
   const pin = root.querySelector<HTMLElement>("[data-pin]");
   const line = root.querySelector<HTMLElement>("[data-line]");
   const track = root.querySelector<HTMLElement>("[data-track]");
+  const belt = root.querySelector<HTMLElement>("[data-belt]");
   const product = root.querySelector<HTMLElement>("[data-product]");
-  if (!pin || !line || !track || !product) return;
+  if (!pin || !line || !track || !belt || !product) return;
 
   const stations = [...root.querySelectorAll<HTMLElement>("[data-station]")];
   const panels = [...root.querySelectorAll<HTMLElement>("[data-panel]")];
@@ -157,18 +159,22 @@ export function mountWorkProcess(root: HTMLElement): void {
 
     let boxCenter: number;
     let trackY: number;
+    let beltShift: number;
 
     if (traveled <= metrics.approach) {
       boxCenter = metrics.anchor - metrics.approach + traveled;
       trackY = 0;
+      beltShift = -traveled;
     } else {
       boxCenter = metrics.anchor;
       trackY = -Math.min(traveled - metrics.approach, metrics.processing);
+      beltShift = -metrics.approach;
     }
 
     product!.style.left = `${metrics.beltCenter}px`;
     product!.style.transform = `translate3d(-50%, ${Math.round(boxCenter - metrics.productHalf)}px, 0)`;
     track!.style.transform = `translate3d(0, ${Math.round(trackY)}px, 0)`;
+    belt!.style.setProperty("--belt-shift", `${Math.round(beltShift)}px`);
     line!.dataset.phase =
       traveled <= metrics.approach ? "approach" : "processing";
     const stage = resolveStage(boxCenter, trackY);

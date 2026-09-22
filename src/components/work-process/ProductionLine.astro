@@ -11,7 +11,7 @@ const { stages } = Astro.props;
 <div class="line" data-line aria-hidden="true">
   <div class="field">
     <div class="track" data-track>
-      <div class="belt"></div>
+      <div class="belt" data-belt></div>
       {stages.map((stage, index) => (
         <div class="station" data-station={stage.id}>
           <div class="platen platen--label">
@@ -114,11 +114,11 @@ const { stages } = Astro.props;
 
   .belt {
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: -50%;
+    bottom: -50%;
     left: 50%;
     width: var(--belt);
-    transform: translateX(-50%);
+    transform: translate3d(-50%, var(--belt-shift, 0px), 0);
     border-right: 1px solid var(--rail);
     border-left: 1px solid var(--rail);
     background-color: var(--belt-fill);
@@ -127,6 +127,7 @@ const { stages } = Astro.props;
       transparent 0 20px,
       var(--slat) 20px 21px
     );
+    will-change: transform;
   }
 
   .station {
@@ -251,7 +252,7 @@ const { stages } = Astro.props;
     .belt {
       right: 0;
       left: auto;
-      transform: none;
+      transform: translate3d(0, var(--belt-shift, 0px), 0);
     }
 
     .station {
