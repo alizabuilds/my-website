@@ -33,7 +33,7 @@ import signatureLogo from "../assets/aliza-logo-motion.svg";
         <span class="hero__sans">I turn</span>
         <span class="hero__handwritten">vague ideas,</span>
       </span>
-      <span class="hero__line">
+      <span class="hero__line hero__line--split">
         <span class="hero__sans">into</span>
         <span class="hero__serif">
           thoughtful <mark>products</mark>
@@ -391,12 +391,18 @@ import signatureLogo from "../assets/aliza-logo-motion.svg";
       padding-top: 13vh;
     }
 
-    .hero__line {
-      white-space: normal;
+    h1 {
+      font-size: clamp(1.7rem, 7.4vw, 2.35rem);
     }
 
-    h1 {
-      font-size: clamp(2.8rem, 12vw, 4.5rem);
+    .hero__line--split {
+      flex-wrap: wrap;
+    }
+
+    .hero__line--split .hero__serif {
+      flex-basis: 100%;
+      text-align: center;
+      white-space: nowrap;
     }
 
     .hero__statement {
