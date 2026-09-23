@@ -5,7 +5,11 @@ import signatureLogo from "../assets/aliza-logo-motion.svg";
 
 <section class="hero" aria-labelledby="hero-heading">
   <header class="site-header">
-    <a class="wordmark" href={import.meta.env.BASE_URL} aria-label="Aliza Latifi home">
+    <a
+      class="wordmark"
+      href={import.meta.env.BASE_URL}
+      aria-label="Aliza Latifi home"
+    >
       <img
         class="wordmark__image"
         src={signatureLogo.src}
@@ -24,10 +28,10 @@ import signatureLogo from "../assets/aliza-logo-motion.svg";
   <div class="hero__pattern hero__pattern--right" aria-hidden="true"></div>
 
   <div class="hero__content">
-    <h1 id="hero-heading">
+    <h1 id="hero-heading" class="space-y-4">
       <span class="hero__line">
-        <span class="hero__serif">Hi,</span>
-        <span class="hero__sans">its Aliza</span>
+        <span class="hero__serif">Hi, its</span>
+        <span class="hero__sans">Aliza</span>
       </span>
       <span class="hero__line">
         <span class="hero__sans">I turn</span>
@@ -393,6 +397,10 @@ import signatureLogo from "../assets/aliza-logo-motion.svg";
 
     h1 {
       font-size: clamp(1.7rem, 7.4vw, 2.35rem);
+    }
+
+    .hero__handwritten {
+      filter: blur(0.9px);
     }
 
     .hero__line--split {
