@@ -1,13 +1,334 @@
-<section aria-label="Hero">
-  <div class="hero"></div>
+---
+import "../styles/fonts.css";
+import signatureLogo from "../assets/aliza-logo-motion.svg";
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="Aliza Latifi home">
+      <img
+        class="wordmark__image"
+        src={signatureLogo.src}
+        alt="Aliza Latifi"
+        width="168"
+        height="78"
+      />
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero__content">
+    <h1 id="hero-heading">
+      <span class="hero__line">
+        <span class="hero__sans">I turn</span>
+        <span class="hero__handwritten">vague ideas,</span>
+      </span>
+      <span class="hero__line">
+        <span class="hero__sans">into</span>
+        <span class="hero__serif">
+          thoughtful <mark>products</mark>
+        </span>
+      </span>
+    </h1>
+
+    <p class="hero__statement">
+      Build MVP and Guiding through to product-market fit
+    </p>
+    <p class="hero__supporting">
+      From uncertainty to a focused plan, and real impact.
+    </p>
+
+    <a class="hero__cta" href="#contact">
+      <span>Let's build</span>
+      <span class="hero__arrow" aria-hidden="true">
+        →
+      </span>
+    </a>
+  </div>
+
+  <p class="hero__edge-label hero__edge-label--left">
+    PRODUCT
+    <br />
+    DEVELOPMENT
+    <br />
+    AI-NATIVE
+  </p>
+  <p class="hero__edge-label hero__edge-label--right">
+    IDEAS
+    <br />
+    PEOPLE
+    <br />
+    REAL-WORLD IMPACT
+  </p>
 </section>
 
 <style>
   .hero {
+    --ink: #161b20;
+    --muted: #8d9299;
+    --accent: #168b82;
+    --accent-hover: #0f6f69;
+    --accent-soft: #a2dcd3;
+    --sans: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+    --serif: "Source Serif 4", Georgia, serif;
+
+    position: relative;
+    display: flex;
     box-sizing: border-box;
-    height: 100vh;
-    height: 100dvh;
-    border: 1px solid #1a1714;
-    background: #fff;
+    min-height: 100svh;
+    flex-direction: column;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        ellipse at 50% 31%,
+        rgb(255 255 255 / 0.9),
+        transparent 45%
+      ),
+      radial-gradient(
+        ellipse at 53% 72%,
+        rgb(246 243 239 / 0.75),
+        transparent 48%
+      ),
+      #fbfaf8;
+    color: var(--ink);
+    font-family: var(--sans);
+  }
+
+  .hero::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+    content: "";
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .site-header,
+  .hero__content,
+  .hero__edge-label {
+    position: relative;
+    z-index: 1;
+  }
+
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem clamp(1.5rem, 7.8vw, 5rem);
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    width: 10.5rem;
+    height: 4.1rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .wordmark__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  nav {
+    display: flex;
+    gap: clamp(1.25rem, 2.3vw, 1.7rem);
+  }
+
+  nav a {
+    color: var(--ink);
+    font-size: 1rem;
+    text-decoration: none;
+  }
+
+  nav a:hover,
+  nav a:focus-visible,
+  .wordmark:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  .hero__content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    flex-direction: column;
+    padding: clamp(2rem, 9vh, 5.5rem) 1.5rem 7rem;
+    text-align: center;
+  }
+
+  h1 {
+    max-width: 52rem;
+    margin: 0;
+    font-size: clamp(3.25rem, 7.4vw, 5.5rem);
+    font-weight: 400;
+    letter-spacing: -0.065em;
+    line-height: 0.97;
+  }
+
+  .hero__line {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.2em;
+    white-space: nowrap;
+  }
+
+  .hero__sans {
+    font-family: var(--sans);
+    font-weight: 600;
+  }
+
+  .hero__handwritten {
+    display: inline-block;
+    color: #22262b;
+    font-family: var(--serif);
+    font-size: 0.85em;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: -0.08em;
+    filter: blur(2px);
+    transform: rotate(-2deg) translateY(-0.04em);
+  }
+
+  .hero__serif {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.075em;
+  }
+
+  mark {
+    position: relative;
+    z-index: 0;
+    color: inherit;
+    background: none;
+  }
+
+  mark::before {
+    position: absolute;
+    z-index: -1;
+    right: -0.05em;
+    bottom: 0.02em;
+    left: -0.03em;
+    height: 0.26em;
+    background: var(--accent-soft);
+    content: "";
+    transform: rotate(-1.5deg);
+  }
+
+  .hero__statement {
+    margin: 2.7rem 0 0;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+  }
+
+  .hero__supporting {
+    margin: 1.25rem 0 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 8.9rem;
+    box-sizing: border-box;
+    margin-top: 1.85rem;
+    padding: 0.72rem 1.15rem 0.72rem 1.8rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition:
+      background-color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .hero__cta:hover,
+  .hero__cta:focus-visible {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+  }
+
+  .hero__arrow {
+    font-size: 1.45rem;
+    font-weight: 300;
+    line-height: 0.6;
+  }
+
+  .hero__edge-label {
+    position: absolute;
+    bottom: clamp(2.5rem, 8.5vh, 4.5rem);
+    margin: 0;
+    color: #9299a1;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    line-height: 1.85;
+  }
+
+  .hero__edge-label--left {
+    left: clamp(1.5rem, 3.6vw, 2.3rem);
+  }
+
+  .hero__edge-label--right {
+    right: clamp(1.5rem, 3.6vw, 2.3rem);
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    .site-header {
+      padding-top: 1.5rem;
+    }
+
+    .wordmark {
+      width: 7.8rem;
+      height: 3.15rem;
+    }
+
+    nav {
+      gap: 0.8rem;
+    }
+
+    nav a {
+      font-size: 0.66rem;
+    }
+
+    .hero__content {
+      padding-top: 13vh;
+    }
+
+    .hero__line {
+      white-space: normal;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 12vw, 4.5rem);
+    }
+
+    .hero__statement {
+      max-width: 20rem;
+      margin-top: 2.3rem;
+      line-height: 1.25;
+    }
+
+    .hero__edge-label {
+      bottom: 1.5rem;
+      font-size: 0.4rem;
+    }
   }
 </style>

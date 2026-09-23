@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1663 946" role="img" aria-label="Animated handwritten Aliza logo">
+  <style>
+    .write { fill:none; stroke:#000; stroke-width:24; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:1; animation:write .8s cubic-bezier(.65,0,.35,1) forwards; }
+    .a { animation-delay:.03s; }
+    .l { animation-delay:.55s; }
+    .i { animation-delay:1s; }
+    .z { animation-delay:1.35s; }
+    .last-a { animation-delay:1.7s; }
+    .crossbar { animation-delay:2.1s; }
+    .dot { opacity:0; transform-box:fill-box; transform-origin:center; animation:dot .18s ease-out 2.85s forwards; }
+    @keyframes write { to { stroke-dashoffset:0; } }
+    @keyframes dot { 0%{opacity:0;transform:scale(.2)} 70%{opacity:1;transform:scale(1.08)} 100%{opacity:1;transform:scale(1)} }
+    @media (prefers-reduced-motion: reduce) {
+      .write { animation:none; stroke-dashoffset:0; }
+      .dot { animation:none; opacity:1; }
+    }
+  </style>
+
+  <!-- A: main body, deliberately excluding the crossbar -->
+  <path class="write a" pathLength="1" d="M155 770 C125 820 145 858 185 850 C285 828 350 710 410 590 C475 460 525 335 558 220 C565 170 570 112 570 76 C570 155 568 270 568 394 C570 520 564 640 575 722 C582 780 606 806 644 787 C690 764 718 704 742 620"/>
+
+  <!-- l -->
+  <path class="write l" pathLength="1" d="M695 705 C676 665 675 604 680 538 C687 443 714 326 760 250 C780 217 802 224 808 256 C818 313 802 427 785 514 C767 608 741 678 715 713 C697 738 705 766 734 780 C770 798 813 774 833 738 C849 709 858 664 866 620"/>
+
+  <!-- i stem -->
+  <path class="write i" pathLength="1" d="M864 620 C852 669 845 725 865 754 C883 780 916 778 934 747 C952 717 954 670 958 634"/>
+
+  <!-- z -->
+  <path class="write z" pathLength="1" d="M957 738 C1000 690 1052 617 1091 581 C1116 558 1148 554 1128 582 C1093 628 1045 675 1003 720 C982 742 968 757 959 769 C1009 760 1061 748 1117 735"/>
+
+  <!-- final a + tail -->
+  <path class="write last-a" pathLength="1" d="M1117 735 C1150 729 1180 696 1196 655 C1212 613 1235 581 1272 570 C1302 561 1330 570 1317 594 C1294 635 1242 661 1197 677 C1173 685 1165 704 1178 724 C1193 746 1226 740 1250 719 C1278 694 1296 652 1304 615 C1314 653 1319 699 1347 729 C1382 766 1440 777 1500 765 C1540 757 1570 742 1602 720"/>
+
+  <!-- Crossbar is intentionally the penultimate stroke -->
+  <path class="write crossbar" pathLength="1" d="M184 548 C390 520 590 501 793 480 C900 468 985 462 1068 458"/>
+
+  <!-- i dot is the final gesture -->
+  <circle class="dot" cx="898" cy="386" r="19" fill="#000"/>
+</svg>
