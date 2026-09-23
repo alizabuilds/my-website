@@ -1,7 +1,7 @@
 ---
-const email = "hello@alizadev.com";
-const telegramHandle = "@alizadev";
-const telegramUrl = "https://t.me/alizadev";
+const email = "l.alirezalatifi@gmail.com";
+const telegramHandle = "@alizahastam";
+const telegramUrl = "https://t.me/alizahastam";
 ---
 
 <section id="contact" class="contact" aria-labelledby="contact-heading">
@@ -14,15 +14,20 @@ const telegramUrl = "https://t.me/alizadev";
     </div>
 
     <div class="contact__body">
-      <h2 id="contact-heading">
-        Founders with a <span class="contact__serif">vague idea?</span>
-        <br />
-        <span class="contact__accent">Let's build it together.</span>
-      </h2>
+      <h2 id="contact-heading">Do you have an idea?</h2>
       <p class="contact__intro">
         Bring the rough thought, the hard question, or the ambitious plan. We’ll
         shape what comes next.
       </p>
+      <a
+        class="contact__accent"
+        href={telegramUrl}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Let's build it
+        <span class="contact__accent-arrow" aria-hidden="true">↗</span>
+      </a>
     </div>
 
     <div class="contact__links" aria-label="Contact options">
@@ -67,12 +72,13 @@ const telegramUrl = "https://t.me/alizadev";
   .contact__inner {
     position: relative;
     display: flex;
-    min-height: min(54rem, 78svh);
+    max-width: 1000px;
+    margin-inline: auto;
     box-sizing: border-box;
     flex-direction: column;
-    justify-content: space-between;
+    gap: clamp(1.75rem, 4vw, 2.75rem);
     overflow: hidden;
-    padding: clamp(1.5rem, 4vw, 4rem);
+    padding: clamp(1.25rem, 3vw, 2.5rem);
     border: 1px solid var(--teal);
     border-radius: clamp(1.5rem, 3vw, 2.75rem);
     background:
@@ -131,17 +137,12 @@ const telegramUrl = "https://t.me/alizadev";
     font-size: 1.1rem;
   }
 
-  .contact__body {
-    margin-block: clamp(3rem, 10vh, 7rem);
-  }
-
   h2 {
-    max-width: 58rem;
     margin: 0;
-    font-size: clamp(3.2rem, 8.5vw, 8.5rem);
+    font-size: clamp(2.4rem, 4.6vw, 4.25rem);
     font-weight: 500;
-    letter-spacing: -0.075em;
-    line-height: 0.9;
+    letter-spacing: -0.06em;
+    line-height: 0.95;
     text-wrap: balance;
   }
 
@@ -153,29 +154,56 @@ const telegramUrl = "https://t.me/alizadev";
   }
 
   .contact__accent {
-    position: relative;
-    display: inline-block;
-    color: var(--teal-light);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    width: fit-content;
+    margin-top: 1.85rem;
+    padding: 0.55rem 0.55rem 0.55rem 1.35rem;
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--teal);
     font-family: var(--serif);
-    font-weight: 400;
-    letter-spacing: -0.075em;
+    font-size: clamp(1.7rem, 3.4vw, 2.35rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 12px 28px rgb(8 28 27 / 0.28);
+    transition:
+      background-color 180ms ease,
+      transform 180ms ease,
+      box-shadow 180ms ease;
   }
 
-  .contact__accent::after {
-    position: absolute;
-    right: 0.04em;
-    bottom: -0.08em;
-    left: 0.02em;
-    height: 0.055em;
-    background: currentColor;
-    content: "";
-    opacity: 0.7;
-    transform: rotate(-1deg);
+  .contact__accent:hover,
+  .contact__accent:focus-visible {
+    background: var(--teal-light);
+    box-shadow: 0 16px 32px rgb(8 28 27 / 0.34);
+    transform: translateY(-3px);
+  }
+
+  .contact__accent:focus-visible {
+    outline: 2px solid var(--paper);
+    outline-offset: 4px;
+  }
+
+  .contact__accent-arrow {
+    display: grid;
+    width: 2.35rem;
+    height: 2.35rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--teal);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1;
   }
 
   .contact__intro {
-    max-width: 31rem;
-    margin: clamp(1.75rem, 4vw, 3rem) 0 0;
+    margin: 2rem 0 0;
     color: rgb(251 250 248 / 0.72);
     font-size: clamp(0.95rem, 1.4vw, 1.15rem);
     line-height: 1.5;
@@ -231,18 +259,26 @@ const telegramUrl = "https://t.me/alizadev";
     }
 
     .contact__inner {
-      min-height: 40rem;
+      gap: 2rem;
       padding: 1.4rem;
       border-radius: 1.4rem;
     }
 
-    .contact__body {
-      margin-block: 4rem 5rem;
+    h2 {
+      font-size: clamp(2.2rem, 10vw, 3.2rem);
+      line-height: 0.96;
     }
 
-    h2 {
-      font-size: clamp(3.1rem, 14vw, 5rem);
-      line-height: 0.92;
+    .contact__accent {
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+      padding-left: 1.1rem;
+      font-size: clamp(1.45rem, 7vw, 1.85rem);
+    }
+
+    .contact__accent-arrow {
+      width: 2.05rem;
+      height: 2.05rem;
     }
 
     .contact__links {
@@ -252,6 +288,7 @@ const telegramUrl = "https://t.me/alizadev";
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .contact__accent,
     .contact__link {
       transition-duration: 0.01ms;
     }
