@@ -1,0 +1,259 @@
+---
+const email = "hello@alizadev.com";
+const telegramHandle = "@alizadev";
+const telegramUrl = "https://t.me/alizadev";
+---
+
+<section id="contact" class="contact" aria-labelledby="contact-heading">
+  <div class="contact__inner">
+    <div class="contact__topline">
+      <p class="contact__kicker">Start a conversation</p>
+      <span class="contact__mark" aria-hidden="true">
+        ✳
+      </span>
+    </div>
+
+    <div class="contact__body">
+      <h2 id="contact-heading">
+        Founders with a <span class="contact__serif">vague idea?</span>
+        <br />
+        <span class="contact__accent">Let's build it together.</span>
+      </h2>
+      <p class="contact__intro">
+        Bring the rough thought, the hard question, or the ambitious plan. We’ll
+        shape what comes next.
+      </p>
+    </div>
+
+    <div class="contact__links" aria-label="Contact options">
+      <a class="contact__link" href={`mailto:${email}`}>
+        <span class="contact__link-label">Email</span>
+        <span class="contact__link-value">{email}</span>
+        <span class="contact__arrow" aria-hidden="true">
+          ↗
+        </span>
+      </a>
+      <a
+        class="contact__link"
+        href={telegramUrl}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span class="contact__link-label">Telegram</span>
+        <span class="contact__link-value">{telegramHandle}</span>
+        <span class="contact__arrow" aria-hidden="true">
+          ↗
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    --teal: #123f3d;
+    --teal-light: #b7e1d9;
+    --paper: #fbfaf8;
+    --serif: "Source Serif 4", Georgia, serif;
+    --sans: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    padding: clamp(1rem, 2.5vw, 2rem);
+    background: var(--paper);
+    color: var(--paper);
+    font-family: var(--sans);
+  }
+
+  .contact__inner {
+    position: relative;
+    display: flex;
+    min-height: min(54rem, 78svh);
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: clamp(1.5rem, 4vw, 4rem);
+    border: 1px solid var(--teal);
+    border-radius: clamp(1.5rem, 3vw, 2.75rem);
+    background:
+      radial-gradient(
+        circle at 87% 16%,
+        rgb(183 225 217 / 0.12),
+        transparent 24rem
+      ),
+      var(--teal);
+  }
+
+  .contact__inner::before {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+    border-radius: inherit;
+    content: "";
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .contact__topline,
+  .contact__body,
+  .contact__links {
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact__topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .contact__kicker,
+  .contact__link-label {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: clamp(0.62rem, 1vw, 0.75rem);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .contact__kicker {
+    color: rgb(251 250 248 / 0.68);
+  }
+
+  .contact__mark {
+    display: grid;
+    width: 2.7rem;
+    height: 2.7rem;
+    place-items: center;
+    border: 1px solid rgb(183 225 217 / 0.6);
+    border-radius: 50%;
+    color: var(--teal-light);
+    font-size: 1.1rem;
+  }
+
+  .contact__body {
+    margin-block: clamp(3rem, 10vh, 7rem);
+  }
+
+  h2 {
+    max-width: 58rem;
+    margin: 0;
+    font-size: clamp(3.2rem, 8.5vw, 8.5rem);
+    font-weight: 500;
+    letter-spacing: -0.075em;
+    line-height: 0.9;
+    text-wrap: balance;
+  }
+
+  .contact__serif {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.08em;
+  }
+
+  .contact__accent {
+    position: relative;
+    display: inline-block;
+    color: var(--teal-light);
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.075em;
+  }
+
+  .contact__accent::after {
+    position: absolute;
+    right: 0.04em;
+    bottom: -0.08em;
+    left: 0.02em;
+    height: 0.055em;
+    background: currentColor;
+    content: "";
+    opacity: 0.7;
+    transform: rotate(-1deg);
+  }
+
+  .contact__intro {
+    max-width: 31rem;
+    margin: clamp(1.75rem, 4vw, 3rem) 0 0;
+    color: rgb(251 250 248 / 0.72);
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    line-height: 1.5;
+  }
+
+  .contact__links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .contact__link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.55rem 1rem;
+    align-items: end;
+    padding: 1rem 0.2rem 0.85rem;
+    border-top: 1px solid rgb(183 225 217 / 0.42);
+    color: var(--paper);
+    text-decoration: none;
+    transition:
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .contact__link:hover,
+  .contact__link:focus-visible {
+    border-color: var(--teal-light);
+    color: var(--teal-light);
+    transform: translateY(-3px);
+  }
+
+  .contact__link-label {
+    grid-column: 1 / -1;
+    color: rgb(251 250 248 / 0.58);
+  }
+
+  .contact__link-value {
+    font-size: clamp(0.95rem, 1.6vw, 1.3rem);
+    letter-spacing: -0.025em;
+  }
+
+  .contact__arrow {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 0.7;
+  }
+
+  @media (max-width: 600px) {
+    .contact {
+      padding: 0.75rem;
+    }
+
+    .contact__inner {
+      min-height: 40rem;
+      padding: 1.4rem;
+      border-radius: 1.4rem;
+    }
+
+    .contact__body {
+      margin-block: 4rem 5rem;
+    }
+
+    h2 {
+      font-size: clamp(3.1rem, 14vw, 5rem);
+      line-height: 0.92;
+    }
+
+    .contact__links {
+      grid-template-columns: 1fr;
+      gap: 1.3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact__link {
+      transition-duration: 0.01ms;
+    }
+  }
+</style>

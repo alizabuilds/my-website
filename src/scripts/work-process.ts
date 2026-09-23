@@ -3,6 +3,8 @@
  * 1. Approach — the product box travels down to the center while the belt
  *    moves upward beneath it. Stations stay put until the box arrives.
  * 2. Processing — the box stays centered while the belt and stations move upward.
+ * 3. Release — after the final station, the product box moves below the line
+ *    and holds there before the next section begins.
  *
  * Travel distance is derived from the stations in the DOM, so the stage count
  * can change without rewriting this interaction.
@@ -13,6 +15,8 @@ interface Metrics {
   spacing: number;
   approach: number;
   processing: number;
+  release: number;
+  hold: number;
   total: number;
   scrollable: number;
   tallest: number;
@@ -77,8 +81,9 @@ export function mountWorkProcess(root: HTMLElement): void {
     const minCenter = productHalf + Math.max(20, lineHeight * 0.05);
     const approach = Math.min(spacing * 0.9, Math.max(0, anchor - minCenter));
     const processing = Math.max(0, stations.length - 1) * spacing;
-    const hold = spacing * 0.72;
-    const total = approach + processing + hold;
+    const release = spacing * 0.72;
+    const hold = spacing * 0.55;
+    const total = approach + processing + release + hold;
     const scrollable = Math.max(
       viewport * 0.85,
       (total * viewport * 0.84) / spacing,
@@ -108,6 +113,8 @@ export function mountWorkProcess(root: HTMLElement): void {
       spacing,
       approach,
       processing,
+      release,
+      hold,
       total,
       scrollable,
       tallest,
@@ -174,13 +181,21 @@ export function mountWorkProcess(root: HTMLElement): void {
     let trackY: number;
     let beltShift: number;
 
+    const processingEnd = metrics.approach + metrics.processing;
+    const releaseEnd = processingEnd + metrics.release;
+
     if (traveled <= metrics.approach) {
       boxCenter = metrics.anchor - metrics.approach + traveled;
       trackY = 0;
       beltShift = -traveled;
-    } else {
+    } else if (traveled <= processingEnd) {
       boxCenter = metrics.anchor;
       trackY = -Math.min(traveled - metrics.approach, metrics.processing);
+      beltShift = -metrics.approach;
+    } else {
+      boxCenter =
+        metrics.anchor + Math.min(traveled - processingEnd, metrics.release);
+      trackY = -metrics.processing;
       beltShift = -metrics.approach;
     }
 
@@ -189,7 +204,13 @@ export function mountWorkProcess(root: HTMLElement): void {
     track!.style.transform = `translate3d(0, ${Math.round(trackY)}px, 0)`;
     belt!.style.setProperty("--belt-shift", `${Math.round(beltShift)}px`);
     line!.dataset.phase =
-      traveled <= metrics.approach ? "approach" : "processing";
+      traveled <= metrics.approach
+        ? "approach"
+        : traveled <= processingEnd
+          ? "processing"
+          : traveled <= releaseEnd
+            ? "release"
+            : "hold";
     const stage = resolveStage(boxCenter, trackY);
     setActive(stage.contentId, stage.litId);
   }
