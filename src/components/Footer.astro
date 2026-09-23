@@ -1,0 +1,28 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <p>© {year} Aliza Latifi</p>
+</footer>
+
+<style>
+  .site-footer {
+    --muted: #8d9299;
+    --paper: #fbfaf8;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    padding: 0.25rem clamp(1rem, 2.5vw, 2rem) clamp(1.5rem, 3vw, 2.25rem);
+    background: var(--paper);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+
+  p {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+</style>
