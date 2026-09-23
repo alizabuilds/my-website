@@ -28,6 +28,14 @@ function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
 
+/** Drawing shown with the active text panel. */
+function productVariant(contentId: string): string {
+  if (contentId === "building") return "plan";
+  if (contentId === "iteration") return "soft";
+  if (contentId === "fit") return "concrete";
+  return "threads";
+}
+
 export function mountWorkProcess(root: HTMLElement): void {
   const host = root as MountedRoot;
   host.__workProcessAbort?.abort();
@@ -76,20 +84,24 @@ export function mountWorkProcess(root: HTMLElement): void {
       (total * viewport * 0.84) / spacing,
     );
 
+    const lineWidth = line!.clientWidth;
+    const lineRect = line!.getBoundingClientRect();
+    const beltRect = belt!.getBoundingClientRect();
+    const beltCenter = beltRect.left - lineRect.left + beltRect.width / 2;
+
     stations.forEach((station, index) => {
-      const height = station.offsetHeight;
-      station.style.top = `${anchor + index * spacing - height / 2}px`;
+      const seat = station.querySelector<HTMLElement>(".station__seat");
+      const seatMid = seat
+        ? seat.offsetTop + seat.offsetHeight / 2
+        : station.offsetHeight / 2;
+      const half = station.offsetWidth / 2;
+      const left = clamp(beltCenter, half, Math.max(half, lineWidth - half));
+      station.style.top = `${anchor + index * spacing - seatMid}px`;
+      station.style.left = `${left}px`;
     });
 
     track!.style.height = `${anchor + processing + lineHeight}px`;
     root.style.height = `${viewport + scrollable}px`;
-
-    const belt = line!.querySelector<HTMLElement>(".belt");
-    const lineRect = line!.getBoundingClientRect();
-    const beltRect = belt?.getBoundingClientRect();
-    const beltCenter = beltRect
-      ? beltRect.left - lineRect.left + beltRect.width / 2
-      : lineRect.width / 2;
 
     return {
       anchor,
@@ -137,6 +149,7 @@ export function mountWorkProcess(root: HTMLElement): void {
     if (key === activeKey) return;
     activeKey = key;
     root.dataset.active = contentId;
+    product.dataset.state = productVariant(contentId);
 
     for (const station of stations) {
       station.classList.toggle("is-active", station.dataset.station === litId);
@@ -172,7 +185,7 @@ export function mountWorkProcess(root: HTMLElement): void {
     }
 
     product!.style.left = `${metrics.beltCenter}px`;
-    product!.style.transform = `translate3d(-50%, ${Math.round(boxCenter - metrics.productHalf)}px, 0)`;
+    product!.style.transform = `translate3d(-50%, ${Math.round(boxCenter - metrics.productHalf - trackY)}px, 0)`;
     track!.style.transform = `translate3d(0, ${Math.round(trackY)}px, 0)`;
     belt!.style.setProperty("--belt-shift", `${Math.round(beltShift)}px`);
     line!.dataset.phase =

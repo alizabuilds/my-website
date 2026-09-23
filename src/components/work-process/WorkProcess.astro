@@ -1,4 +1,5 @@
 ---
+import "../../styles/fonts.css";
 import { workStages } from "../../data/work-process";
 import ProductionLine from "./ProductionLine.astro";
 import StageContent from "./StageContent.astro";
@@ -37,15 +38,14 @@ import StageContent from "./StageContent.astro";
     --belt-fill: rgb(26 23 20 / 0.035);
     --slat: rgb(26 23 20 / 0.14);
     --product-fill: #f7f4ec;
+    --lift: 3px 3px 0 rgb(26 23 20 / 0.22);
     --belt: 112px;
     --product-size: 88px;
-    --serif:
-      Palatino, "Palatino Linotype", "Iowan Old Style", Georgia,
-      "Times New Roman", serif;
+    --serif: "Source Serif 4", Palatino, "Palatino Linotype", Georgia, serif;
     --sans:
-      "Avenir Next", "Segoe UI", "Helvetica Neue", "Liberation Sans", sans-serif;
+      "IBM Plex Sans", "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
     --mono:
-      ui-monospace, "Cascadia Mono", "SFMono-Regular", "Liberation Mono",
+      "IBM Plex Mono", ui-monospace, "Cascadia Mono", "SFMono-Regular",
       monospace;
 
     position: relative;
@@ -54,6 +54,8 @@ import StageContent from "./StageContent.astro";
     background: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
+    font-optical-sizing: auto;
+    font-synthesis: none;
   }
 
   .pin {
