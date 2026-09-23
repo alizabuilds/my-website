@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1663 946" role="img" aria-label="Animated handwritten Aliza logo">
   <style>
-    .write { fill:none; stroke:#000; stroke-width:24; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:1; animation:write .8s cubic-bezier(.65,0,.35,1) forwards; }
-    .a { animation-delay:.03s; }
-    .l { animation-delay:.55s; }
-    .i { animation-delay:1s; }
-    .z { animation-delay:1.35s; }
-    .last-a { animation-delay:1.7s; }
-    .crossbar { animation-delay:2.1s; }
-    .dot { opacity:0; transform-box:fill-box; transform-origin:center; animation:dot .18s ease-out 2.85s forwards; }
+    .write { fill:none; stroke:#000; stroke-width:24; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:1; animation:write .5s cubic-bezier(.65,0,.35,1) forwards; }
+    .a { animation-delay:.02s; }
+    .l { animation-delay:.33s; }
+    .i { animation-delay:.6s; }
+    .z { animation-delay:.81s; }
+    .last-a { animation-delay:1.02s; }
+    .crossbar { animation-delay:1.26s; }
+    .dot { opacity:0; transform-box:fill-box; transform-origin:center; animation:dot .12s ease-out 1.71s forwards; }
     @keyframes write { to { stroke-dashoffset:0; } }
     @keyframes dot { 0%{opacity:0;transform:scale(.2)} 70%{opacity:1;transform:scale(1.08)} 100%{opacity:1;transform:scale(1)} }
     @media (prefers-reduced-motion: reduce) {
