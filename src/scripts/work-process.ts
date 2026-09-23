@@ -32,14 +32,6 @@ function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
 
-/** Drawing shown with the active text panel. */
-function productVariant(contentId: string): string {
-  if (contentId === "building") return "plan";
-  if (contentId === "iteration") return "soft";
-  if (contentId === "fit") return "concrete";
-  return "threads";
-}
-
 export function mountWorkProcess(root: HTMLElement): void {
   const host = root as MountedRoot;
   host.__workProcessAbort?.abort();
@@ -156,7 +148,13 @@ export function mountWorkProcess(root: HTMLElement): void {
     if (key === activeKey) return;
     activeKey = key;
     root.dataset.active = contentId;
-    product.dataset.state = productVariant(contentId);
+    const activeStation = stations.find(
+      (station) => station.dataset.station === contentId,
+    );
+    product.dataset.state =
+      activeStation?.dataset.productState ??
+      product.dataset.restingState ??
+      "vague";
 
     for (const station of stations) {
       station.classList.toggle("is-active", station.dataset.station === litId);
