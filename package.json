@@ -2,6 +2,7 @@
   "name": "alizadev",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@12.5.1",
   "engines": {
     "node": ">=22.12.0"
   },
